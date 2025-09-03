@@ -13,7 +13,9 @@ It streams AI responses in real-time (typing effect), supports **dark mode**, **
 - 💡 **Dynamic Suggestions** – AI recommends quick reply buttons.  
 - 🕑 **Timestamps & Avatars** – Like professional chat apps.  
 - 🔗 **WebSocket based** – Fast, scalable real-time communication.  
-- 🔐 **Environment Variables** – Secure API key management.  
+- 🔐 **Environment Variables** – Secure API key management.
+- ⚡ **Redis Integration** – For caching, real-time chat storage, quick retrieval.  
+- 🗄 **MongoDB Integration** – Store users, authentication, chat history.  
 
 ---
 
@@ -29,6 +31,8 @@ It streams AI responses in real-time (typing effect), supports **dark mode**, **
 - FastAPI  
 - Uvicorn  
 - Google Gemini API  
+- MongoDB (persistent chat/user storage)  
+- Redis (real-time caching & pub/sub) 
 
 ---
 
@@ -39,7 +43,7 @@ ai-chatbot/
 │── backend/
 │   ├── app/
 │   │   ├── routes/         # API + WebSocket routes
-│   │   ├── services/       # AI integration
+│   │   ├── services/       # AI/Redis, MongoDB integration
 │   │   └── config.py       # Env config
 │   ├── venv/               # Python virtual env
 │   └── main.py             # FastAPI entry
@@ -64,7 +68,7 @@ git clone https://github.com/karansingla-dev/ai-chatbot
 cd ai-chatbot
 ```
 
-### 2️⃣ Backend Setup (FastAPI)
+### 2️⃣ Backend Setup (FastAPI + MongoDB + Redis)
 ```bash
 cd backend
 python3 -m venv venv
@@ -75,6 +79,9 @@ pip install -r requirements.txt
 Create `.env` file in `backend/`:
 ```
 GEMINI_API_KEY=your_api_key_here
+MONGO_URI=mongodb://localhost:27017/ai_chatbot
+REDIS_URL=redis://localhost:6379/0
+JWT_SECRET=your_secret_here
 ```
 
 Run backend:
@@ -103,6 +110,7 @@ npm run dev
 - Start chatting with AI 🤖.  
 - AI will **stream replies word by word**.  
 - Get **suggestions** as quick reply buttons.  
+- Chat history is stored in MongoDB, active sessions are cached in Redis.
 
 ---
 
@@ -114,7 +122,6 @@ npm run dev
 
 ## 🚀 Future Improvements
 
-- 📝 Save chat history in MongoDB  
 - 🎤 Voice input & output  
 - 📎 File upload support  
 - 👍👎 Feedback system  
@@ -129,4 +136,4 @@ Pull requests are welcome! For major changes, open an issue first.
 
 ## 📜 License
 
-MIT License © 2025 [Karan Singla]
+MIT License © 2025 Karan Singla
